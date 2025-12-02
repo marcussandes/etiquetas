@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "auth-client", url = "http://localhost:8083")
-public interface AuthFilter {
+public interface AuthClient {
 
     @PostMapping("/autenticacao/validate")
     String validarToken(@RequestParam("token") String token);

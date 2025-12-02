@@ -1,6 +1,6 @@
 package com.ms.etiquetas.config;
 
-import com.ms.etiquetas.client.AuthFilter;
+import com.ms.etiquetas.client.AuthClient;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ public class SecurityConfig {
 
     @Autowired
 
-    AuthFilter authFilter;
+    AuthClient authFilter;
 
     @Bean
 

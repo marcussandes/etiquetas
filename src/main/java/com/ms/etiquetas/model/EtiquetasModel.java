@@ -18,4 +18,8 @@ public class EtiquetasModel {
     private Long idEtiqueta;
 
     private String etiqueta;
+
+    public void setEtiqueta(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
 }

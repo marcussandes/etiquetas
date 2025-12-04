@@ -1,7 +1,6 @@
 package com.ms.etiquetas.config;
 
 import com.ms.etiquetas.client.AuthClient;
-import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,20 +11,21 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-
 @EnableWebSecurity
-
 public class SecurityConfig {
 
     @Autowired
-
-    AuthClient authFilter;
+    private AuthClient authClient;
 
     @Bean
-
     public SecurityFilterChain securityFilterChain(HttpSecurity http
 
     ) throws Exception {
+
+        AuthFilterCustomizado customAuthFilter = new AuthFilterCustomizado(authClient);
+
+
+
 
         return http
 
@@ -37,7 +37,7 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
 
-                ).addFilterBefore((Filter) authFilter, UsernamePasswordAuthenticationFilter.class)
+                ).addFilterBefore(customAuthFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
 

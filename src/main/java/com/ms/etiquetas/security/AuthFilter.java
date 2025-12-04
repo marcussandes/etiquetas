@@ -29,9 +29,9 @@ public class AuthFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
             try {
-                String usuario = authClient.validarToken(token);
+                boolean tokenIsValid = authClient.validate("Bearer " + token);
                 UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(usuario, null, Collections.emptyList());
+                        new UsernamePasswordAuthenticationToken(tokenIsValid, null, Collections.emptyList());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } catch (Exception e) {
                 System.out.println("Erro ao validar token: " + e.getMessage());
